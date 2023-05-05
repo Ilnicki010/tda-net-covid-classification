@@ -2,6 +2,18 @@ import matplotlib.pyplot as plt
 import ripser
 from gtda.diagrams import BettiCurve
 import numpy as np
+import os
+from keras.utils import plot_model
+
+
+def plot_model_custom(model, name):
+    plot_model(model,
+               to_file=f"{os.getcwd()}/model_visualizations/{name}.png",
+               show_shapes=True,
+               rankdir="LR",
+               expand_nested=True,
+               show_layer_names=False)
+
 
 def visualize_history(hist, name: str):
     fig, (ax1, ax2) = plt.subplots(1, 2)
@@ -43,7 +55,7 @@ def transform_images_to_betti_curves(images) -> np.array:
     bc = BettiCurve()
 
     betti_curves = np.array([
-        bc.fit_transform(X = dgm)[0][0]
+        bc.fit_transform(X=dgm)[0][0]
         for dgm in dgms_processed
     ])
 
