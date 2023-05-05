@@ -21,7 +21,7 @@ def visualize_history(hist, name: str):
 
     plt.show()
 
-    print(f'{name} model accuracy (val): {hist.history["accuracy"][-1]}')
+    print(f'{name} model accuracy (val): {hist.history["val_accuracy"][-1]}')
 
 
 def transform_images_to_betti_curves(images) -> np.array:
