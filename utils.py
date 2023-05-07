@@ -4,7 +4,34 @@ from gtda.diagrams import BettiCurve
 import numpy as np
 import os
 from keras.utils import plot_model
+from sklearn.metrics import classification_report, confusion_matrix
 
+def evaluate_custom(y_true, y_pred):
+    # Compute confusion matrix
+    cm = confusion_matrix(y_true, y_pred)
+
+    # Compute precision, recall, f1-score, and support for each class
+    report = classification_report(y_true, y_pred, output_dict=True, zero_division=0)
+
+    # Compute overall accuracy
+    accuracy = np.trace(cm) / float(np.sum(cm))
+
+    # Compute true negative rate (TNR) for each class
+    tnr = []
+    for i in range(cm.shape[0]):
+        tn = np.sum(cm) - np.sum(cm[i, :]) - np.sum(cm[:, i]) + cm[i, i]
+        tnr.append(tn / (np.sum(cm) - np.sum(cm[i, :])))
+
+    # Return results as a dictionary
+    results = {
+        "precision": report["macro avg"]["precision"],
+        "recall": report["macro avg"]["recall"],
+        "accuracy": accuracy,
+        "f1-score": report["macro avg"]["f1-score"],
+        "TNR": tnr,
+    }
+
+    return results
 
 def plot_model_custom(model, name):
     plot_model(model,
@@ -12,7 +39,7 @@ def plot_model_custom(model, name):
                show_shapes=True,
                rankdir="LR",
                expand_nested=True,
-               show_layer_names=False)
+               show_layer_names=True)
 
 
 def visualize_history(hist, name: str):
