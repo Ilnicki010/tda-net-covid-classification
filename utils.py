@@ -4,34 +4,18 @@ from gtda.diagrams import BettiCurve
 import numpy as np
 import os
 from keras.utils import plot_model
-from sklearn.metrics import classification_report, confusion_matrix
+import numpy as np
+from sklearn.metrics import f1_score, recall_score, accuracy_score, precision_score, confusion_matrix
+
 
 def evaluate_custom(y_true, y_pred):
-    # Compute confusion matrix
-    cm = confusion_matrix(y_true, y_pred)
+    conf_mat = confusion_matrix(y_true, y_pred)
+    print(f"Accuracy: {round(accuracy_score(y_true, y_pred), 2)}")
+    print(f"Precision: {round(precision_score(y_true, y_pred), 2)}")
+    print(f"Recall: {round(recall_score(y_true, y_pred), 2)}")
+    print(f"f-1 score: {round(f1_score(y_true, y_pred), 2)}")
+    print(f"TNR: {round(conf_mat[0, 0] / (conf_mat[0, 0] + conf_mat[0, 1]), 2)}")
 
-    # Compute precision, recall, f1-score, and support for each class
-    report = classification_report(y_true, y_pred, output_dict=True, zero_division=0)
-
-    # Compute overall accuracy
-    accuracy = np.trace(cm) / float(np.sum(cm))
-
-    # Compute true negative rate (TNR) for each class
-    tnr = []
-    for i in range(cm.shape[0]):
-        tn = np.sum(cm) - np.sum(cm[i, :]) - np.sum(cm[:, i]) + cm[i, i]
-        tnr.append(tn / (np.sum(cm) - np.sum(cm[i, :])))
-
-    # Return results as a dictionary
-    results = {
-        "precision": report["macro avg"]["precision"],
-        "recall": report["macro avg"]["recall"],
-        "accuracy": accuracy,
-        "f1-score": report["macro avg"]["f1-score"],
-        "TNR": tnr,
-    }
-
-    return results
 
 def plot_model_custom(model, name):
     plot_model(model,
@@ -59,8 +43,6 @@ def visualize_history(hist, name: str):
     ax2.legend(['train', 'test'], loc='upper left')
 
     plt.show()
-
-    print(f'{name} model accuracy (val): {hist.history["val_accuracy"][-1]}')
 
 
 def transform_images_to_betti_curves(images) -> np.array:
