@@ -4,23 +4,26 @@ I tried to recreate results from "[TDA-Net: Fusion of Persistent Homology and De
 ## Goal
 
 The problem we try to solve is a supervised binary classification of chest X-ray photos. There are 2 separate classes:
-"Covid" - patient is affected by COVID-19
-"Normal" - patient is healthy
+- "Covid" - patient is affected by COVID-19
+- "Normal" - patient is healthy
+
 Model's input: black and white X-ray image of a chest
 Model's output: one of two classes: "Covid" or "Normal"
 
 ## Dataset
 
 I wasn't able to exactly recreate the dataset used in a paper. The proposed dataset was built from two publicly available databases:
-positive cases were taken from: https://github.com/ieee8023/covid-chestxray-dataset
-normal cases: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+
+1. positive cases were taken from: https://github.com/ieee8023/covid-chestxray-dataset
+2. normal cases: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
+
 I couldn't represent the original dataset because the first dataset is dynamic and changed over time and the second is a big set of cases so the authors picked a random sample from it.
 
 **Dataset used for recreation**
 
 I decided to go with this dataset from Kaggle: https://www.kaggle.com/datasets/fusicfenta/chest-xray-for-covid19-detection
 
-It's based on the same two data sources the original work is based on. It's balanced and contains 288 images for training and 60 in a validation set.
+It's based on the same two data sources the original work is based on. It's **balanced** and contains **288 images for training** and **60 in a validation set**.
 
 ## TDA
 
