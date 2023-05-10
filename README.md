@@ -17,9 +17,9 @@ I wasn't able to exactly recreate the dataset used in a paper. The proposed data
 1. positive cases were taken from: https://github.com/ieee8023/covid-chestxray-dataset
 2. normal cases: https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
 
-I couldn't represent the original dataset because the first dataset is dynamic and changed over time and the second is a big set of cases so the authors picked a random sample from it.
+I couldn't reproduce the original dataset because the first dataset is dynamic and changed over time and the second is a big set of cases so the authors picked a random sample from it.
 
-**Dataset used for recreation**
+### Dataset used for recreation
 
 I decided to go with this dataset from Kaggle: https://www.kaggle.com/datasets/fusicfenta/chest-xray-for-covid19-detection
 
