@@ -29,7 +29,8 @@ It's based on the same two data sources the original work is based on. It's **ba
 
 TDA (Topological Data Analysis) - way for analyzing (usually high-dimensional) data using topological features.
 
-![image](https://github.com/Ilnicki010/tda-net-covid-classification/assets/18630618/e1ca1957-64e1-41ed-b776-648bfd8b53b4) </br>
+![gif](https://github.com/Ilnicki010/tda-net-covid-classification/assets/18630618/d6fc0f2a-a6ec-4c03-a5c7-2ab06b66a7d7)
+
 *GIF from https://towardsdatascience.com/persistent-homology-with-examples-1974d4b9c3d0*
 
 ## Proposed networks
